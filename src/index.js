@@ -8,8 +8,6 @@ import { productPostController, productGetController } from './controller/produc
 import authenticationMiddleware from './middleware/authenticationMiddleware';
 import profileController from './controller/profileController';
 
-const bodyParser = require('body-parser');
-
 const url = "mongodb://localhost:27017/";
 
 const port = 3000;
@@ -19,8 +17,8 @@ export const app = express();
 //middleware
 app.use('/', express.static(path.join(__dirname, 'public')));
 app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (_req, res) => {
     res.send('Hello Express server!')
